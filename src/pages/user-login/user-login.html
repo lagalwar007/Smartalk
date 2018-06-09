@@ -1,7 +1,7 @@
 <ion-header >
   <ion-navbar  hideBackButton="true">
     <ion-buttons end>
-     <button ion-button icon-right color="light" (click)="dashboardPage()">SKIP<ion-icon name="ios-arrow-forward"></ion-icon></button>
+     <!-- <button ion-button icon-right color="light" (click)="dashboardPage()">SKIP<ion-icon name="ios-arrow-forward"></ion-icon></button> -->
    </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -9,7 +9,7 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col ><button ion-button block class="facebookButton" (click)="login()">Login With Facebook</button></ion-col>
+        <ion-col ><button ion-button block class="facebookButton" (click)="fblogin()">Login With Facebook</button></ion-col>
       </ion-row>
       <ion-row>
         <ion-col><button ion-button block class="instagramButton">Login With Instagram</button></ion-col>
@@ -17,17 +17,26 @@
     </ion-grid>
 
     <div class="hrLine"><span>Or</span></div>
-
-    <ion-list no-lines padding-top>
+    <form [formGroup]="loginForm">
       <ion-item>
-        <ion-input type="text" placeholder="Username"></ion-input>
+        <ion-label color="{{ username.touched && username.dirty ? 'dark' : 'primary' }}" floating> Username </ion-label>
+        <ion-input 
+        type="text" 
+        name="username" 
+        placeholder="Username"
+        formControlName="username"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" placeholder="Password"></ion-input>
+        <ion-label color="{{ password.touched && password.dirty ? 'dark' : 'primary' }}" floating> Password </ion-label>
+        <ion-input 
+        type="password" 
+        name="password" 
+        placeholder="Password"
+        formControlName="password"
+        ></ion-input>
       </ion-item>
-    </ion-list>
-    <button ion-button block round color="secondary">Login</button>
-
+    <button ion-button block round color="secondary" (click)="login();" disabled="{{ this.loginForm.valid ? '' : 'disabled' }}">Login</button>
+    </form>
     <div padding-top>
     <button ion-button block color="light" clear (click)="signupPage();">If new member ? SIGNUP</button>
     <button ion-button block color="light" clear (click)="forgotPasswordPage();">Forgot Password</button>

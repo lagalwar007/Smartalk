@@ -1,3 +1,4 @@
+import { Service } from './../services';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -12,6 +13,8 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FacebookProvider } from '../providers/facebook/facebook';
+import { ApiProvider } from '../providers/api/api';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,6 @@ import { FacebookProvider } from '../providers/facebook/facebook';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-
     UserLogin,
     UserSignup,
     UserForgotpassword,
@@ -43,7 +45,9 @@ import { FacebookProvider } from '../providers/facebook/facebook';
     Facebook,
     NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FacebookProvider
+    FacebookProvider,
+    ApiProvider,
+    Service
   ]
 })
 export class AppModule {}
