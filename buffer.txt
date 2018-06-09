@@ -1,0 +1,9 @@
+facebook credentials:-
+App id:- 224275188302500
+App secret:- 6d9a24ebf9e9466858b420fcaeb7ebfa
+
+keytool -exportcert -alias androiddebugkey -keystore "C:\Users\intel\.android\debug.keystore" | "C:\Users\intel\Desktop\openssl\bin\openssl" sha1 -binary | "C:\Users\intel\Desktop\openssl\bin\openssl" base64
+keyhash: Yb8ymvn8z2+hEpMflNDWfLQOxck=
+
+ionic cordova plugin add cordova-plugin-facebook4@1.7.4 --variable APP_ID="224275188302500" --variable APP_NAME="Smartboy"
+C:\Users\intel\Desktop\openssl\
