@@ -25,4 +25,7 @@ export class ApiProvider {
   public loginWithFacebook(id:String){
     return this.http.post(this.url+'fblogin',JSON.stringify({ id: id }))
   }
+  public signupMethod(data: Object) {
+    return this.http.post(this.url + 'signup', data).map(res => res.json())
+  }
 }

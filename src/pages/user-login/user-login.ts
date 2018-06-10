@@ -47,7 +47,7 @@ export class UserLogin {
   }
 
   ionViewDidLoad() {
-    this.service.setLoading({ 'content': "Please wait......",'duration':5000 });
+    //this.service.setLoading({ 'content': "Please wait......",'duration':5000 });
     console.log("ionViewDidLoad UserLogin");
     this.db.getItem('online').then( (status:Boolean) => {
       console.log('status',status);

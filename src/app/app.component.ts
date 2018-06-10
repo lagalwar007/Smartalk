@@ -57,6 +57,7 @@ export class MyApp {
         this.api.logoutMethod(id).subscribe((response) => {
           if (response['status'] == true) {
             this.service.setLoading({ 'content': 'Please wait.....' });
+            this.db.remove('id');
             this.db.setItem('online',false).then(() => {
               this.service.setToast({ 'message': response['msg'] });
               this.service.callbackToast(() => {

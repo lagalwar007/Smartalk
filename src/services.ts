@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { ToastController} from 'ionic-angular/components/toast/toast-controller';
 import { LoadingController,Loading } from 'ionic-angular';
 
 @Injectable()
+
+interface toast {
+   message  : String,
+   duration : Number,
+   position : String,
+   cssClass : String  
+}
+
+
 export class Service {
     constructor( public toastCtrl:ToastController, public loadingCtrl: LoadingController){}
     /* ToastService */
-    public toastDefaultSettings:Object = {
+    public toastDefaultSettings:toast = {
         message: 'User was added successfully',
         duration: 3000,
         position: 'top',
@@ -17,7 +26,8 @@ export class Service {
       this.toast.present();          
     }
     setToast(toastSettings: Object){
-      this.toast = this.toastCtrl.create(Object.assign(this.toastDefaultSettings,toastSettings));this.getToast();  
+      this.toast = this.toastCtrl.create(Object.assign(this.toastDefaultSettings,toastSettings));
+      this.getToast();  
     }
     callbackToast(callbackfn:Function){
         this.toast.onDidDismiss( () => {

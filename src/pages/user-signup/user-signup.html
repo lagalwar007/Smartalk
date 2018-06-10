@@ -1,8 +1,8 @@
 <ion-header >
   <ion-navbar  hideBackButton="true">
-    <ion-buttons end>
+    <!-- <ion-buttons end>
      <button ion-button icon-right color="light" (click)="dashboardPage()">SKIP<ion-icon name="ios-arrow-forward"></ion-icon></button>
-   </ion-buttons>
+   </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
@@ -10,33 +10,64 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col><button ion-button block class="facebookButton"> Facebook</button></ion-col>
+        <ion-col><button ion-button block class="facebookButton" (click)="fblogin()"> Facebook</button></ion-col>
         <ion-col><button ion-button block class="instagramButton"> Instagram</button></ion-col>
       </ion-row>
     </ion-grid>
 
     <div class="hrLine"><span>Or</span></div>
 
-    <ion-list no-lines padding-top>
-      <ion-item>
-        <ion-input type="text" placeholder="First Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" placeholder="Last Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="email" placeholder="Email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="password" placeholder="Password"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="password" placeholder="Confirm Password"></ion-input>
-      </ion-item>
-    </ion-list>
-    <button ion-button block round color="secondary">Signup</button>
+    <form [formGroup]="signupForm">
+    <ion-item>
+      <ion-label color="{{ signupForm.get('firstname').touched && signupForm.get('firstname').dirty ? 'dark' : 'primary' }}" floating> Firstname </ion-label>
+      <ion-input 
+        type="text" 
+        formControlName="firstname"
+        ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="{{ signupForm.get('lastname').touched && signupForm.get('lastname').dirty ? 'dark' : 'primary' }}" floating>
+        Lastname </ion-label>
+      <ion-input 
+        type="text" 
+        formControlName="lastname"
+        ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="{{ signupForm.get('email').touched && signupForm.get('email').dirty ? 'dark' : 'primary' }}" floating>
+        Email </ion-label>
+      <ion-input 
+      type="email" 
+      formControlName="email"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="{{ signupForm.get('password').touched && signupForm.get('password').dirty ? 'dark' : 'primary' }}" floating>
+        Password </ion-label>
+      <ion-input 
+        type="password" 
+        formControlName="password"
+        ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="{{ signupForm.get('confirmpassword').touched && signupForm.get('confirmpassword').dirty ? 'dark' : 'primary' }}" floating>
+        Confirm Password </ion-label>
+      <ion-input 
+        type="password" 
+        formControlName="confirmpassword"
+        ></ion-input>
+    </ion-item>
+  <button 
+    ion-button 
+    block round 
+    color="secondary" 
+    (click)="signup();">Signup</button>
+    </form>
     <div padding>
-      <button ion-button block color="light" clear (click)="loginPage();">If already have an account ? LOGIN</button>
+      <button 
+        ion-button 
+        block color="light" 
+        clear (click)="loginPage();">If already have an account ? LOGIN</button>
       <button ion-button block color="light" clear (click)="forgotPasswordPage();">Forgot Password</button>
    </div>
 
