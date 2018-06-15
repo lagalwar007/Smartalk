@@ -19,12 +19,15 @@
 
     <form [formGroup]="signupForm">
     <ion-item>
-      <ion-label color="{{ signupForm.get('firstname').touched && signupForm.get('firstname').dirty ? 'dark' : 'primary' }}" floating> Firstname </ion-label>
       <ion-input 
         type="text" 
         formControlName="firstname"
         ></ion-input>
+        <div *ngIf="signupForm.get('firstname').touched && signupForm.get('firstname').dirty">
+        <div class="error msg">Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen</div>
+        </div>
     </ion-item>
+
     <ion-item>
       <ion-label color="{{ signupForm.get('lastname').touched && signupForm.get('lastname').dirty ? 'dark' : 'primary' }}" floating>
         Lastname </ion-label>

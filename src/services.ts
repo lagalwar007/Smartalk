@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { ToastController} from 'ionic-angular/components/toast/toast-controller';
 import { LoadingController,Loading } from 'ionic-angular';
 
-@Injectable()
-
 interface toast {
-   message  : String,
-   duration : Number,
-   position : String,
-   cssClass : String  
+    message: String,
+    duration: Number,
+    position: String,
+    cssClass: String
 }
 
-
+@Injectable()
 export class Service {
+    
     constructor( public toastCtrl:ToastController, public loadingCtrl: LoadingController){}
     /* ToastService */
     public toastDefaultSettings:toast = {

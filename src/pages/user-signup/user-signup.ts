@@ -1,5 +1,5 @@
 import { ApiProvider } from './../../providers/api/api';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -20,7 +20,7 @@ import { ValidationErrors } from '@angular/forms/src/directives/validators';
 export class UserSignup {
 
   public signupForm   = new FormGroup({
-   'firstname'        : new FormControl('',[Validators.required]),
+   'firstname'        : new FormControl('',[Validators.required,Validators.minLength(4)]),
    'lastname'         : new FormControl('',Validators.required),
    'email'            : new FormControl('',[Validators.required,Validators.email]),
    'password'         : new FormControl('',[Validators.required,Validators.minLength(5)]),
@@ -32,14 +32,17 @@ export class UserSignup {
               public service:Service,
               public api:ApiProvider){}
 
-  private confirmingPassword(control:AbstractControl): ValidationErrors | null{
-    if (control.get('password').value !== control.get('confirmpassword').value){
-      return { 'confirmpassword': false}
-    }
+  private confirmingPassword(control: AbstractControl):ValidatorFn{
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.get('password').value !== control.get('confirmpassword').value) {
+        return { 'confirmpassword': false }
+      }
+      return null;
+    };
   }
   signup(){
     if(this.signupForm.valid){
-      this.api.signupMethod(this.signupForm.value).subscribe( (response : Response) => {
+      this.api.signupMethod(this.signupForm.value()).subscribe( (response : Response) => {
         if(response['status']){
           this.service.setToast({'message':response['message']});
           this.service.callbackToast( () => {
